@@ -12,7 +12,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Compile') {
             steps {
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/matthcol/movieapijava2021.git',
@@ -38,6 +38,7 @@ pipeline {
             steps {
                 sh "mvn -DskipTests package"
                 archiveArtifacts 'target/*.jar'
+                sh "cp target/*.jar /home/stagiaire/RepoArtifacts/" 
             }
         }
     }
